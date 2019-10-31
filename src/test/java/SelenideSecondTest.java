@@ -41,13 +41,6 @@ class SelenideSecondTest {
         $("[data-test-id=notification]").waitUntil(visible, 12000);
     }
 
-    public String dateGoodWeek() {
-        LocalDate.now().plusDays(7);
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.YYYY");
-        String dayPlus7 = format.format(LocalDate.now().plusDays(5));
-        return dayPlus7;
-    }
-
     @Test
     void shouldBeSuccessTestWithPopupWindows() {
         open("http://localhost:9999");
