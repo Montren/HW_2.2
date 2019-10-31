@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static com.codeborne.selenide.Condition.*;
@@ -15,6 +17,13 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 class SelenideSecondTest {
+
+    public String dategood() {
+        LocalDate.now().plusDays(5);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.YYYY");
+        String dayPlus5 = format.format(LocalDate.now().plusDays(5));
+        return dayPlus5;
+    }
 
     @Test
     void shouldBeSuccessTest() throws InterruptedException {
@@ -26,8 +35,7 @@ class SelenideSecondTest {
         SelenideElement myData = input.get(1);
         myData.click();
         myData.sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
-
-        myData.setValue("05.11.2019");
+        myData.setValue(dategood());
         $("[data-test-id=name] input").setValue("Иванов Иван");
         $("[data-test-id=phone] input").setValue("+79169161616");
         $("[data-test-id=agreement]").click();
